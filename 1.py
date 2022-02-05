@@ -73,3 +73,4 @@ pygame.quit()
 
 # Удаляем за собой файл с изображением.
 os.remove(map_file)
+
