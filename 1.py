@@ -6,7 +6,7 @@ import requests
 
 LON = '48.566888'
 LAT = '55.856320'
-zoom = 19
+zoom = 1
 api_server = 'http://static-maps.yandex.ru/1.x/'
 par = {
     "ll": ",".join([LON, LAT]),
@@ -40,9 +40,27 @@ while running:
             running = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
-                print(1)
                 if zoom + 1 <= 19:
                     zoom += 1
+                    par = {
+                        "ll": ",".join([LON, LAT]),
+
+                        "l": "map",
+                        'z': str(zoom)
+                    }
+                    response = requests.get(api_server, params=par)
+                    map_file = "map.png"
+                    with open(map_file, "wb") as file:
+                        file.write(response.content)
+            if event.key == pygame.K_w:
+                if zoom - 1 >= 1:
+                    zoom -= 1
+                    par = {
+                        "ll": ",".join([LON, LAT]),
+
+                        "l": "map",
+                        'z': str(zoom)
+                    }
                     response = requests.get(api_server, params=par)
                     map_file = "map.png"
                     with open(map_file, "wb") as file:
