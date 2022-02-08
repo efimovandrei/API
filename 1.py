@@ -39,7 +39,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_q:
+            if event.key == pygame.K_PAGEUP:
                 if zoom + 1 <= 19:
                     zoom += 1
                     par = {
@@ -52,7 +52,7 @@ while running:
                     map_file = "map.png"
                     with open(map_file, "wb") as file:
                         file.write(response.content)
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_PAGEDOWN:
                 if zoom - 1 >= 1:
                     zoom -= 1
                     par = {
